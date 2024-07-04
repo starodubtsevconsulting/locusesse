@@ -1,0 +1,12 @@
+*.iml
+.idea
+node_modules/
+
+/infrastructure/*.js
+/infrastructure/!jest.config.js
+/infrastructure/*.d.ts
+/infrastructure/node_modules
+
+# CDK asset staging directory
+/infrastructure/.cdk.staging
+/infrastructure/cdk.out
