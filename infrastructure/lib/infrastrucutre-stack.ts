@@ -1,16 +1,26 @@
 import * as cdk from 'aws-cdk-lib';
 import { Construct } from 'constructs';
-// import * as sqs from 'aws-cdk-lib/aws-sqs';
+import * as s3 from 'aws-cdk-lib/aws-s3';
+import * as s3Deployment from 'aws-cdk-lib/aws-s3-deployment';
+
+
 
 export class InfrastrucutreStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
-    // The code that defines your stack goes here
+    const websiteBucket = new s3.Bucket(this, 'WebsiteBucket', {
+      bucketName: 'locusesse',
+      publicReadAccess: true,
+      websiteIndexDocument: 'index.html',
+      removalPolicy: cdk.RemovalPolicy.DESTROY,
+      blockPublicAccess: s3.BlockPublicAccess.BLOCK_ACLS,
+    });
 
-    // example resource
-    // const queue = new sqs.Queue(this, 'InfrastrucutreQueue', {
-    //   visibilityTimeout: cdk.Duration.seconds(300)
-    // });
+    new s3Deployment.BucketDeployment(this, 'DeployWebsite', {
+      sources: [s3Deployment.Source.asset('../website')],
+      destinationBucket: websiteBucket,
+    });
+
   }
 }

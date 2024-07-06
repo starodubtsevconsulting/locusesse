@@ -15,3 +15,10 @@ git remote set-url origin https://github.com/starodubtsevconsulting/locusesse.gi
 git commit -m "initial commit"
 git push -u origin main
 ```
+
+
+```shell
+cd infrastructure
+npm run build
+cdk synth
+```

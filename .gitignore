@@ -2,9 +2,9 @@
 .idea
 node_modules/
 
-/infrastructure/*.js
+*.d.ts
+*.js
 /infrastructure/!jest.config.js
-/infrastructure/*.d.ts
 /infrastructure/node_modules
 
 # CDK asset staging directory
